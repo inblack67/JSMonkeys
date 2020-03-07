@@ -7,6 +7,10 @@ dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
+// db
+const connectDB = require('./config/db');
+connectDB();
+
 // bodyparser
 app.use(express.json());
 
