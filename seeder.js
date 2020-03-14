@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const User = require('./models/User');
+const Profile = require('./models/Profile');
 require('colors');
 
 dotenv.config({ path: './config/config.env' });
@@ -15,7 +16,8 @@ const connectDB = async () => {
 }
 
 const deleteData = async () => {
-  await User.deleteMany();
+  // await User.deleteMany();
+  await Profile.deleteMany();
   console.log(`Data Destroyed`.red.inverse);
   process.exit();
 }

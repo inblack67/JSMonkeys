@@ -1,5 +1,4 @@
 const asyncHandler = require('../middlewares/async')
-const ErrorResponse = require('../middlewares/error');
 const gravatar = require('gravatar');
 const User = require('../models/User');
 
@@ -21,15 +20,7 @@ exports.register = asyncHandler(
     const user = await User.create(req.body);
 
     const token = await user.getSignedToken()
-    console.log(token);
     
     res.status(201).json({ success: true, token, msg: 'Registration Successful' });
   }
 );
-
-
-exports.login = asyncHandler(
-  async (req,res,next) => {
-
-  }
-)
