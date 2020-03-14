@@ -14,12 +14,14 @@ connectDB();
 
 // load routes
 const users = require('./routes/users');
+const auth = require('./routes/auth');
 
 // bodyparser
 app.use(express.json());
 
 // use routes
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 // errorHandler
 app.use(errorHandler);

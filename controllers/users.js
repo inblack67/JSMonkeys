@@ -19,7 +19,17 @@ exports.register = asyncHandler(
     req.body.avatar = avatar;
 
     const user = await User.create(req.body);
+
+    const token = await user.getSignedToken()
+    console.log(token);
     
-    res.status(201).json({ success: true, data: user, msg: 'Registration Successful' });
+    res.status(201).json({ success: true, token, msg: 'Registration Successful' });
   }
 );
+
+
+exports.login = asyncHandler(
+  async (req,res,next) => {
+
+  }
+)
