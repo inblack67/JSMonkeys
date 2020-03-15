@@ -16,6 +16,7 @@ connectDB();
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const profile = require('./routes/profile');
+const posts = require('./routes/posts');
 
 // bodyparser
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
 // errorHandler
 app.use(errorHandler);
