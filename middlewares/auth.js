@@ -18,7 +18,7 @@ exports.protect = asyncHandler( async (req,res,next) => {
   
     req.user = await User.findById(decoded.id);
 
-    if(!user)
+    if(!req.user)
     {
       return next(new ErrorResponse('Not Authorized', 401));
     }

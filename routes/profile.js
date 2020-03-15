@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getMyProfile, createProfile, getAllProfiles, getProfileByUserId, deleteProfile, addExperience } = require('../controllers/profile');
+const { getMyProfile, createProfile, getAllProfiles, getProfileByUserId, deleteProfile, addExperience, deleteExperience, addEducation, deleteEducation, getRepos } = require('../controllers/profile');
 const { protect } = require('../middlewares/auth');
 const { validationResult, check }= require('express-validator'); 
 
@@ -11,6 +11,10 @@ router
 .get('/user/:id', getProfileByUserId)
 .delete('/', protect, deleteProfile)
 .put('/experience', protect, addExperience)
+.delete('/experience/:id', protect, deleteExperience)
+.put('/education', protect, addEducation)
+.delete('/education/:id', protect, deleteEducation)
+.get('/github/:username', getRepos)
 
 .post('/', [
   protect, [
