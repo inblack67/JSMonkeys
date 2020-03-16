@@ -75,7 +75,7 @@ const Register = () => {
       </div>
 
       <br/>
-      <input type="submit" value="Register" className="btn purple"/>
+      <input type="submit" value="Register" className="btn black"/>
 
     </form>
     </div>

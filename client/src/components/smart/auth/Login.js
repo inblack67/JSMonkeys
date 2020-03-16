@@ -54,7 +54,7 @@ const Login = () => {
       </div>
 
       <br/>
-      <input type="submit" value="Login" className="btn purple"/>
+      <input type="submit" value="Login" className="btn red darken-4"/>
 
     </form>
     </div>

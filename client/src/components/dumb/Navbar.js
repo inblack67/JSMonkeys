@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav className="deep-purple">
+    <nav className="deep-purple transparent">
       <div className="nav-wrapper">
         <Link to="/" className="brand-logo"><i className="fa fa-github"></i> JSMonkeys</Link>
         <ul className="right hide-on-small-only">
@@ -14,5 +14,6 @@ const Navbar = () => {
     </nav>
   )
 }
+
 
 export default Navbar
