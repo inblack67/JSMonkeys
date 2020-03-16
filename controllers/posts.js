@@ -138,3 +138,55 @@ exports.unlikePost = asyncHandler(
 
   }
 )
+
+// @route POST /api/posts/comment/:id
+// @desc Add Comment
+// @access Private
+exports.addComment = asyncHandler(
+  async (req,res,next) => {
+
+    const user = await User.findById(req.user.id);
+    const post = await Post.findById(req.params.id);
+
+    req.body.user = user.id;
+    req.body.name = user.name;
+    req.body.avatar = user.avatar;
+
+    post.comments.unshift(req.body);
+
+    await post.save();
+
+    return res.status(200).json({ success: true, data: post.comments, msg: 'Comment Added Successfuly' })
+  }
+)
+
+
+// @route DELETE /api/posts/comment/:id/:comment_id
+// @desc Delete Comment
+// @access Private
+exports.deleteComment = asyncHandler(
+  async (req,res,next) => {
+
+    const post = await Post.findById(req.params.id);
+
+    const comment = post.comments.find(c => c.id === req.params.comment_id);
+
+    if(!comment)
+    {
+      return next(new ErrorResponse('No Such Comment Exists', 404)); 
+    }
+
+    if(comment.user.toString() !== req.user.id)
+    {
+      return next(new ErrorResponse('Not Authorized', 401));
+    }
+
+    const removeIndex = post.comments.map(c => c.user.toString() === req.user.id).indexOf();
+
+    post.comments.splice(removeIndex, 1);
+
+    await post.save();
+
+    return res.status(200).json({ success: true, data: post.comments, msg: 'Comment Deleted Successfuly' })
+  }
+)
