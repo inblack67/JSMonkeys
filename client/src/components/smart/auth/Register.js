@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
+
+import { connect } from 'react-redux';
+import {register} from '../../../actions/auth'
+
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const Register = () => {
+const Register = ({ register, isAuthenticated }) => {
 
   const [formData, setFormData] = useState({
     name: '',
@@ -25,28 +30,18 @@ const Register = () => {
     }
     else
     {
-      const newUser = {name,email,password}
-
-      try {
-
-        const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-
-        const res = await axios.post('/api/users', newUser, config);
-
-        console.log(res.data);
-
-      } catch (err) {
-        M.toast({ html: err.response.data.error });
-      }
-
+      register(formData);
     }
   }
 
   const { name, email, password, password2 } = formData;
+
+  if(isAuthenticated)
+  {
+    return (
+      <Redirect to="/dashboard"/>
+    )
+  }
 
   return (
     <div className="container">
@@ -82,4 +77,13 @@ const Register = () => {
   )
 }
 
-export default Register
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+}
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.AuthState.isAuthenticated
+})
+
+export default connect(mapStateToProps, {register})(Register);

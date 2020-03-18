@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-
+import {loadUser} from './actions/auth'
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -10,13 +10,20 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 import './App.css';
 import Routes from './routing/routes'
 import Header from './components/dumb/Header';
+import setAuthToken from './utils/setAuthToken';
 
+
+if(localStorage.token)
+{
+  setAuthToken(localStorage.token);
+}
 
 function App() {
 
   useEffect(() => {
     // MJS init
     M.AutoInit();
+    store.dispatch(loadUser())
   });
 
   return (

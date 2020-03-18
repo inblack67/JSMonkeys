@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import M from 'materialize-css/dist/js/materialize.min.js';
+import { connect } from 'react-redux'
+import { login } from '../../../actions/auth'
+import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({login, isAuthenticated}) => {
 
   const [formData, setFormData] = useState({
     email: '',
@@ -16,26 +18,17 @@ const Login = () => {
   const onSubmit = async e => {
 
     e.preventDefault();
-
-      try {
-
-        const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-
-        const res = await axios.post('/api/auth', formData, config);
-
-        console.log(res.data);
-
-      } catch (err) {
-        M.toast({ html: err.response.data.error });
-      }
-
+    login(formData);
   }
 
   const { password, email  } = formData;
+
+  if(isAuthenticated)
+  {
+    return (
+      <Redirect to="/dashboard"/>
+    )
+  }
 
   return (
     <div className="container">
@@ -61,4 +54,13 @@ const Login = () => {
   )
 }
 
-export default Login
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+}
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.AuthState.isAuthenticated
+})
+
+export default connect(mapStateToProps, {login})(Login);
