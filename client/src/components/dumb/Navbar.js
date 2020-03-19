@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import { logout } from '../../actions/auth'
 import PropTypes from 'prop-types'
+import Preloader from './Preloader'
 
 
 const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
@@ -16,9 +17,15 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
 
   const authLinks = (
     <ul className="right hide-on-small-only">
-      <a href="#1" onClick={logout}>Logout</a>
+      <li><Link to="/dashboard">Dashboard</Link></li>
+      <li><a href="#!" onClick={logout}>Logout</a></li>
   </ul>
   )
+
+  if(loading)
+  {
+    return <Preloader />
+  }
 
   return (
     <nav className="deep-purple transparent">

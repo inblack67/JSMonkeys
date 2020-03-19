@@ -2,6 +2,12 @@ const express = require('express');
 const dotenv = require('dotenv');
 const errorHandler = require('./middlewares/error');
 require('colors');
+const sanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+const hpp = require('hpp');
+const cors = require('cors');
 
 // env vars
 dotenv.config({ path: './config/config.env' });
@@ -11,6 +17,29 @@ const app = express();
 // db
 const connectDB = require('./config/db');
 connectDB();
+
+// sanitize data
+app.use(sanitize());
+
+// set security headers
+app.use(helmet());
+
+// prevent XSS attacks
+app.use(xss());
+
+// rate limit
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000,   // 10 minutes
+  max: 100
+});
+
+app.use(limiter);
+
+// prevent http param pollution
+app.use(hpp());
+
+// enable CORS
+app.use(cors());
 
 // load routes
 const users = require('./routes/users');

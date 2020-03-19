@@ -1,6 +1,6 @@
 import axios from 'axios'
 import M from 'materialize-css/dist/js/materialize.min.js';
-import { REGISTER_SUCCESS, REGISTER_FAIL, AUTH_ERROR, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types'
+import { REGISTER_SUCCESS, REGISTER_FAIL, AUTH_ERROR, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_PROFILE } from './types'
 import setAuthToken from '../utils/setAuthToken';
 
 export const loadUser = () => async dispatch => {
@@ -104,6 +104,9 @@ export const login = (formData) => async dispatch => {
 
 export const logout = () => dispatch => {
   dispatch({
-    type: LOGOUT
+    type: LOGOUT,
+  });
+  dispatch({
+    type: CLEAR_PROFILE,
   });
 }
