@@ -17,8 +17,8 @@ const connectDB = async () => {
 }
 
 const deleteData = async () => {
-  // await User.deleteMany();
-  // await Profile.deleteMany();
+  await User.deleteMany();
+  await Profile.deleteMany();
   await Post.deleteMany();
   console.log(`Data Destroyed`.red.inverse);
   process.exit();

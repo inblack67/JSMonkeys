@@ -1,6 +1,6 @@
 import axios from 'axios'
 import M from 'materialize-css/dist/js/materialize.min.js';
-import { REGISTER_SUCCESS, REGISTER_FAIL, AUTH_ERROR, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_PROFILE } from './types'
+import { REGISTER_SUCCESS, REGISTER_FAIL, AUTH_ERROR, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_PROFILE, ACCOUNT_DELETED, PROFILE_ERROR } from './types'
 import setAuthToken from '../utils/setAuthToken';
 
 export const loadUser = () => async dispatch => {
@@ -93,8 +93,6 @@ export const login = (formData) => async dispatch => {
       });
     }
 
-    console.log(err);
-
     dispatch({
       type: LOGIN_FAIL
     });
@@ -109,4 +107,39 @@ export const logout = () => dispatch => {
   dispatch({
     type: CLEAR_PROFILE,
   });
+}
+
+export const deprecate = () => async dispatch => {
+
+  if(window.confirm('Are you sure'))
+  {
+    try {
+      const res = axios.delete('/api/profile');
+      console.log(res.data);
+  
+      dispatch({
+        type: CLEAR_PROFILE
+      })
+      dispatch({
+        type: ACCOUNT_DELETED
+      })
+  
+      M.toast({ html: 'Account Deleted Successfuly' })
+    
+    } catch (err) {
+      if(err.response)
+      {
+        M.toast({
+          html: err.response.data.error
+        });
+      }
+  
+      dispatch({
+        type: PROFILE_ERROR
+      })
+  
+    }
+  
+  }
+
 }

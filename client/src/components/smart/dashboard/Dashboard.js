@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getMyProfile } from '../../../actions/profile'
+import { deprecate } from '../../../actions/auth'
 import Preloader from '../../dumb/Preloader'
+import DashboardActions from './DashboardActions'
+import Experience from './Experience'
+import Education from './Education'
 
-const Dashboard = ({ getMyProfile, profile: {loading, profile}, auth: { user }}) => {
+const Dashboard = ({ deprecate, getMyProfile, profile: {loading, profile}, auth: { user }}) => {
 
   useEffect(() => {
     getMyProfile();
@@ -22,7 +26,16 @@ const Dashboard = ({ getMyProfile, profile: {loading, profile}, auth: { user }})
     <p className="flow-text">Welcome { user && user.name }</p>
     { !profile ? <Fragment><p className="flow-text">You must create your profile</p>
     <Link to='/create-profile' className='btn red waves-effect waves-light'>Create Profile</Link>
-    </Fragment> : <Fragment>Your profile awaits...</Fragment> }
+    </Fragment> : 
+    <Fragment>
+    <DashboardActions /> 
+    <Experience experience={profile.experience}/> 
+    <Education education={profile.education}/>
+    </Fragment>
+    }
+
+    <a href="#1" className="btn red" onClick={e => deprecate()}>Delete Account</a>
+
   </Fragment>
   )
 }
@@ -31,6 +44,7 @@ Dashboard.propTypes = {
   getMyProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  deprecate: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -38,4 +52,4 @@ const mapStateToProps = state => ({
   auth: state.AuthState
 })
 
-export default connect(mapStateToProps, { getMyProfile })(Dashboard)
+export default connect(mapStateToProps, { getMyProfile, deprecate })(Dashboard)

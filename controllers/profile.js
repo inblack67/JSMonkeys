@@ -1,6 +1,7 @@
 const asyncHandler = require('../middlewares/async')
 const ErrorResponse = require('../utils/errorResponse');
 const Profile = require('../models/Profile');
+const Post = require('../models/Post');
 const User = require('../models/User');
 const axios = require('axios');
 
@@ -128,6 +129,7 @@ exports.getProfileByUserId = asyncHandler(
 exports.deleteProfile = asyncHandler(
   async (req,res,next) => {
 
+    await Post.deleteMany({ user: req.user.id })
     await Profile.findOneAndRemove({ user: req.user.id });
     await User.findOneAndRemove({ _id: req.user.id });
 
@@ -149,7 +151,7 @@ exports.addExperience = asyncHandler(
       return next(new ErrorResponse('Profile Not Found', 404));
     }
 
-    profile.experience = req.body;
+    profile.experience.unshift(req.body);
 
     await profile.save();
 
@@ -202,7 +204,7 @@ exports.addEducation = asyncHandler(
       return next(new ErrorResponse('Profile Not Found', 404));
     }
 
-    profile.education = req.body;
+    profile.education.unshift(req.body)
 
     await profile.save();
 

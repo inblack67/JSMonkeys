@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import { createProfile } from '../../../actions/profile'
+import { connect } from 'react-redux'
+import { getMyProfile, createProfile } from '../../../actions/profile'
 
-const CreateProfile = ({ createProfile, history }) => {
+const EditProfile = ({ getMyProfile, history, createProfile, profile: { profile, loading } }) => {
 
   const [formData, setFormData] = useState({
     company: '',
@@ -21,6 +21,30 @@ const CreateProfile = ({ createProfile, history }) => {
     instagram: ''
   })
 
+
+  useEffect(() => {
+
+    getMyProfile()
+
+    setFormData({
+      company: loading || !profile.company ? '' : profile.company,
+      website: loading || !profile.website ? '' : profile.website,
+      location: loading || !profile.location ? '' : profile.location,
+      status: loading || !profile.status ? '' : profile.status,
+      skills: loading || !profile.skills ? '' : profile.skills.join(','),
+      githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
+      bio: loading || !profile.bio ? '' : profile.bio,
+      twitter: loading || !profile.social ? '' : profile.social.twitter,
+      facebook: loading || !profile.social ? '' : profile.social.facebook,
+      linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+      youtube: loading || !profile.social ? '' : profile.social.youtube,
+      instagram: loading || !profile.social ? '' : profile.social.instagram
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[loading])
+
+  },[])
+
   const {company,website,location,status,skills,githubusername,bio,
 facebook,linkedin,twitter,youtube,instagram} = formData
 
@@ -30,18 +54,19 @@ const onChange = e => {
 
 const onSubmit = e => {
   e.preventDefault();
-  createProfile(formData, history)
+  createProfile(formData, history, true)
 }
 
   return (
+
     <div className="container" style={{'marginBottom': '200px'}}>
-      <p className="flow-text center">Profile Creation</p>
+      <p className="flow-text center">Edit Profile</p>
       <small className="red-text"><strong>* is a required field</strong></small>
       <br/>
       <br/>
       <form onSubmit={onSubmit}>
-
-      <div className="input-field">
+        
+        <div className="input-field">
           <input type="text" value={status} onChange={onChange} name='status' />
           <span className="helper-text">Add Profession <span className="red-text">*</span></span>
         </div>
@@ -71,13 +96,6 @@ const onSubmit = e => {
         <span className="helper-text">Bio</span>
         </div>
 <br/><br/>
-
-    <ul className="collapsible">
-
-    <li>
-      <div className="collapsible-header"><i className="material-icons">whatshot</i>Are you social?</div>
-
-      <div className="collapsible-body">
 
       <div className="input-field">
           <i className="fa fa-github prefix black-text"></i>
@@ -111,9 +129,6 @@ const onSubmit = e => {
           <input type="text" name="facebook" value={facebook} className="validate" onChange={onChange}/>
         </div>
 
-      </div>
-    </li>
-    </ul>
 
 <br/><hr/>
     <div className="input-field">
@@ -128,9 +143,13 @@ const onSubmit = e => {
   )
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
+  getMyProfile: PropTypes.func.isRequired,
 }
 
+const mapStateToProps = state => ({
+  profile: state.ProfileState
+})
 
-export default connect(null, {createProfile})(withRouter(CreateProfile))
+export default connect(mapStateToProps, {getMyProfile,  createProfile})(withRouter(EditProfile))
