@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types'
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, CLEAR_PROFILE, GET_PROFILES, GET_REPOS } from './types'
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 export const getMyProfile = () => async dispatch => {
@@ -9,6 +9,88 @@ export const getMyProfile = () => async dispatch => {
     dispatch({
       type: GET_PROFILE,
       payload: res.data.profile
+    })
+  
+  } catch (err) {
+    if(err.response){
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: err.response.data.error
+      })
+    }
+    else{
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: 'Server Error'
+      })
+    }
+
+  }
+}
+
+export const getProfiles = () => async dispatch => {
+  try {
+
+    const res = await axios('/api/profile')
+
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data.data
+    })
+  
+  } catch (err) {
+    if(err.response){
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: err.response.data.error
+      })
+    }
+    else{
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: 'Server Error'
+      })
+    }
+
+  }
+}
+
+export const getProfileById = (userId) => async dispatch => {
+  try {
+
+    const res = await axios(`/api/profile/user/${userId}`)
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data.data
+    })
+  
+  } catch (err) {
+    if(err.response){
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: err.response.data.error
+      })
+    }
+    else{
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: 'Server Error'
+      })
+    }
+
+  }
+}
+
+export const getRepos = (username) => async dispatch => {
+  try {
+
+    const res = await axios(`/api/profile/github/${username}`)
+    console.log(res.data);
+
+    dispatch({
+      type: GET_REPOS,
+      payload: res.data.repos
     })
   
   } catch (err) {

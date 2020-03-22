@@ -72,13 +72,6 @@ const onSubmit = e => {
         </div>
 <br/><br/>
 
-    <ul className="collapsible">
-
-    <li>
-      <div className="collapsible-header"><i className="material-icons">whatshot</i>Are you social?</div>
-
-      <div className="collapsible-body">
-
       <div className="input-field">
           <i className="fa fa-github prefix black-text"></i>
           <input type="text" name="githubusername" value={githubusername} className="validate" onChange={onChange}/>
@@ -110,10 +103,6 @@ const onSubmit = e => {
           <i className="fa fa-facebook prefix indigo-text darken-2"></i>
           <input type="text" name="facebook" value={facebook} className="validate" onChange={onChange}/>
         </div>
-
-      </div>
-    </li>
-    </ul>
 
 <br/><hr/>
     <div className="input-field">

@@ -132,7 +132,7 @@ const onSubmit = e => {
 
 <br/><hr/>
     <div className="input-field">
-    <input type="submit" value="Create" className='btn red'/>
+    <input type="submit" value="Update" className='btn red'/>
 
 <Link to='/dashboard' className='btn black secondary-content'>Retreat</Link>
     </div>

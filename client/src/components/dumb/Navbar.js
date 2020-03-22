@@ -12,12 +12,14 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
     <ul className="right hide-on-small-only">
     <li><Link to="/login">Login</Link></li>
     <li><Link to="/register">Register</Link></li>
+    <li><Link to="/profiles">Devs</Link></li>
     </ul>
   )
 
   const authLinks = (
     <ul className="right hide-on-small-only">
       <li><Link to="/dashboard">Dashboard</Link></li>
+      <li><Link to="/profiles">Devs</Link></li>
       <li><a href="#!" onClick={logout}>Logout</a></li>
   </ul>
   )

@@ -8,6 +8,8 @@ import CreateProfile from '../components/smart/profile/CreateProfile';
 import EditProfile from '../components/smart/profile/EditProfile';
 import AddExperience from '../components/smart/profile/AddExperience';
 import AddEducation from '../components/smart/profile/AddEducation';
+import Profiles from '../components/smart/profiles/Profiles';
+import Profile from '../components/smart/profile/Profile';
 
 const routes = () => {
   return (
@@ -19,6 +21,8 @@ const routes = () => {
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/profiles" component={Profiles} />
+        <Route exact path="/profile/:id" component={Profile} />
         </Switch>
   )
 }
