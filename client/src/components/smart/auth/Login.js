@@ -31,23 +31,25 @@ const Login = ({login, isAuthenticated}) => {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{'color': 'white'}}>
       <p className="flow-text">Login</p>
       <form onSubmit={onSubmit}>
 
 
       <div className="input-field">
         <input type="email" className="validate" onChange={onChange} value={email} name="email" required/>
+        <label htmlFor="email">Email</label>
         <span className="helper-text" data-error="You must add your valid email">Email</span>
       </div>
 
       <div className="input-field">
         <input type="password" className="validate" onChange={onChange} value={password} name="password" required minLength="6"/>
+        <label htmlFor="password">Password</label>
         <span className="helper-text" data-error="You must add your password">Password</span>
       </div>
 
       <br/>
-      <input type="submit" value="Login" className="btn red darken-4"/>
+      <input type="submit" value="Login" className="btn red"/>
 
     </form>
     </div>

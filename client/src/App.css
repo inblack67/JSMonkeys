@@ -1,6 +1,9 @@
-/* .App{
-  background: url(./img/);
-  background-size: cover;
-  background-position: center;
+.App{
+  background: black;
+  color: white;
   min-height: 100vh;
-} */
+}
+
+input, textarea{
+  color: white;
+}

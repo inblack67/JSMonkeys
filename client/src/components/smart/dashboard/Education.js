@@ -10,7 +10,7 @@ const Education = ({ education, deleteEducation }) => {
   {
     return (
       <p className="flow-text">
-        Add Some Education bitch
+        Add Some Education
       </p>
     )
   }
@@ -31,7 +31,7 @@ const Education = ({ education, deleteEducation }) => {
 
   return (
     <div className="container">
-      <p className="flow-text">Education</p>
+      <p className="flow-text left"><span className="red-text">Education</span></p>
       <table className='highlight responsive-table'>
         <thead>
           <tr>

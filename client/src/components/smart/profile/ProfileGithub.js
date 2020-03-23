@@ -10,27 +10,31 @@ const ProfileGithub = ({ username, getRepos, profile: { repos, loading }  }) => 
     getRepos(username)
   },[])
 
-  if(loading || !repos)
+  while(loading)
+  {
+    return <Preloader />
+  }
+
+  if(!repos)
   {
     return <Preloader />
   }
 
   return (
-    <div className="container">
-      <ul className="collection">
-        { repos && repos.map(r => (
-          <li className="collection-item" key={r.id}>
-            { r.name}
-          </li>
+    <div className="collection">
+             { repos && repos.map(r => (
+          <a href={r.html_url} target='_blank' rel='noopener noreferrer' className="collection-item red-text black" key={r.id}>
+            { r.name} 
+             <span className="secondary-content badge blue-text">{r.forks} Forks</span>
+
+          </a>
         )) }
-      </ul>
-    </div>
+  </div>
   )
 }
 
 ProfileGithub.propTypes = {
   getRepos: PropTypes.func.isRequired,
-  repos: PropTypes.array.isRequired,
   username: PropTypes.string.isRequired,
 }
 
@@ -39,3 +43,12 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { getRepos })(ProfileGithub)
+
+
+/* 
+       { repos && repos.map(r => (
+          <li className="collection-item" key={r.id}>
+            { r.name}
+          </li>
+        )) }
+*/

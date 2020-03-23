@@ -86,7 +86,6 @@ export const getRepos = (username) => async dispatch => {
   try {
 
     const res = await axios(`/api/profile/github/${username}`)
-    console.log(res.data);
 
     dispatch({
       type: GET_REPOS,

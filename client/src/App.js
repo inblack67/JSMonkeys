@@ -12,6 +12,7 @@ import Routes from './routing/routes'
 import Header from './components/dumb/Header';
 import setAuthToken from './utils/setAuthToken';
 
+import './App.css'
 
 if(localStorage.token)
 {

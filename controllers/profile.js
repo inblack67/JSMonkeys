@@ -31,7 +31,7 @@ exports.createProfile = asyncHandler(
 
   async (req, res) => {
 
-    const {skills,youtube,facebook,twitter,instagram,linkedin} = req.body;
+    const {skills,youtube,facebook,twitter,instagram,linkedin, github} = req.body;
 
     req.body.user = req.user.id;
 
@@ -43,6 +43,12 @@ exports.createProfile = asyncHandler(
     if(youtube)
     {
       socialFields.youtube = youtube
+      req.body.social = socialFields
+    }
+
+    if(github)
+    {
+      socialFields.github = github
       req.body.social = socialFields
     }
 

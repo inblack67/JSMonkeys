@@ -111,6 +111,9 @@ const ProfileSchema = mongoose.Schema({
     },
     instagram: {
       type: String
+    },
+    github: {
+      type: String
     }
   },
   createdAt: {

@@ -22,7 +22,7 @@ const Experience = ({ experience, deleteExperience }) => {
 
   return (
     <div className="container">
-      <p className="flow-text">Experience</p>
+      <p className="flow-text left"><span className="red-text">Experience</span></p>
       <table className='highlight responsive-table'>
         <thead>
           <tr>

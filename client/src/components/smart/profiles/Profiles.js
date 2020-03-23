@@ -12,22 +12,20 @@ const Profiles = ({getProfiles, profile: { profiles, loading }}) => {
     // eslint-disable-next-line
   },[])
 
-  if(loading)
+  while(loading)
   {
     return <Preloader />
   }
 
   return (
     // profiles.length === 0 && !loading ? <h4>No Profiles So Far</h4> :
-    profiles.map(p => (
-      <div className="row">
-        <ul>
-        <li>
+    <div className="container">
+      <blockquote><p className="flow-text">Meet The Devs</p></blockquote>
+
+      {  profiles.map(p => (
         <ProfileItem profile={p} key={p._id}/>
-        </li>
-        </ul>
+    ))}
       </div>
-    ))
   )
 }
 

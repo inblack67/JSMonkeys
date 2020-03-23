@@ -1,42 +1,29 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import AutoInit from '../AutoInit'
 
 const ProfileItem = ({ profile: { company, githubusername, location, skills, status, user: { _id, name, avatar } } }) => {
 
   return (
 
-    <div className='col s4' style={{'width': '300px', 'height': '400px'}}>
-      <div className="card">
-        <div className="card-image">
-        <img src={avatar} alt='no-photo' className='activator'/>
+    <Fragment>
 
-        <Link to={`/profile/${_id}`} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">launch</i></Link>
+      <AutoInit />
 
-
-        </div>
-        <div className="card-content">
-        <span className="card-title">{name}</span>
-        <p>{status}</p>
-        </div>
-
-        <div className="card-reveal">
-      <span className="card-title grey-text text-darken-4">{name}<i className="material-icons right">close</i></span>
-      
-  <p>{company}</p>
-  <p>{location}</p>
-  <ul className="collection">
-  { skills.map(s => (
-      <li className='collection-item'>
-        {s}
-      </li>
-    )) }
-  </ul>
-
-    </div>
-
+    <ul className="collapsible">
+    <li>
+      <div className="collapsible-header black white-text"><i className="fa fa-github"></i>{name}</div>
+      <div className="collapsible-body">
+      <p><i className="material-icons left">border_color</i>{status}</p>
+      <p><i className="material-icons left">work</i>{company}</p>
+      <p><i className="material-icons left">place</i>{location}</p>
+      <strong><Link to={`/profile/${_id}`} className='red-text'><i className="material-icons left">launch</i>Take A Visit</Link></strong>
       </div>
-    </div>
+    </li>
+    </ul>
+    </Fragment>
+
   )
 }
 
@@ -45,3 +32,24 @@ ProfileItem.propTypes = {
 }
 
 export default ProfileItem
+
+
+
+/* 
+     <div>
+      <div className="card black">
+        <div className="card-content white-text">
+          <span className="card-title">{name}</span>
+          <br/>
+          <i className="material-icons left">border_color</i><p>{status}</p>
+            <br/>
+            <i className="material-icons left">work</i><p>{company}</p>
+            <br/>
+            <i className="material-icons left">place</i><p>{location}</p>
+        </div>
+        <div className="card-action">
+          <Link to={`/profile/${_id}`}>See Profile</Link>
+        </div>
+      </div>
+    </div>
+*/

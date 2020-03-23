@@ -50,27 +50,31 @@ const Register = ({ register, isAuthenticated }) => {
 
       <div className="input-field">
         <input type="text" className="validate" onChange={onChange} value={name} name="name" required/>
+        <label htmlFor="name">Name</label>
         <span className="helper-text" data-error="You must add your name">Name</span>
       </div>
 
       <div className="input-field">
         <input type="email" className="validate" onChange={onChange} value={email} name="email" required/>
+        <label htmlFor="email">Email</label>
         <span className="helper-text" data-error="You must add a valid email">Email</span>
       </div>
 
       <div className="input-field">
         <input type="password" className="validate" onChange={onChange} value={password} name="password" required minLength="6"/>
+        <label htmlFor="password">Password</label>
         <span className="helper-text" data-error="You must add a password">Password</span>
       </div>
 
 
       <div className="input-field">
         <input type="password" className="validate" onChange={onChange} value={password2} name="password2" required minLength="6"/>
+        <label htmlFor="password2">Confirm Password</label>
         <span className="helper-text" data-error="Passwords must match">Confirm Password</span>
       </div>
 
       <br/>
-      <input type="submit" value="Register" className="btn black"/>
+      <input type="submit" value="Register" className="btn red"/>
 
     </form>
     </div>

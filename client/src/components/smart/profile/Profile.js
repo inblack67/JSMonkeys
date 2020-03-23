@@ -5,32 +5,105 @@ import { getProfileById } from '../../../actions/profile'
 import { Link } from 'react-router-dom'
 import Preloader from '../../dumb/Preloader'
 import ProfileGithub from './ProfileGithub'
+import M from 'materialize-css/dist/js/materialize.min.js';
+import ExperienceItem from './ExperienceItem'
+import EducationItem from './EducationItem'
 
 const Profile = ({match, getProfileById, profile:{profile, loading}, auth}) => {
 
   useEffect(() => {
-    getProfileById(match.params.id)
-  },[])
+    M.AutoInit()
+  })
+  
 
-  if(!profile || loading)
+  useEffect(() => {
+    getProfileById(match.params.id)
+  },[getProfileById])
+
+  while(loading)
+  {
+    return <Preloader />
+  }
+
+  if(!profile)
   {
     return <Preloader />
   }
 
   return (
-    <div className='container'>
-      <Link to='/profiles' className='btn black'>
-      Back to profiles
-      </Link>
-      { !auth.loading && auth.isAuthenticated && auth.user._id === profile.user._id && <Fragment>
-        <Link to='/edit-profile' className='btn blue'>
-      Edit Profile
-      </Link>
-      </Fragment> }
+<div className='container'>
 
-      { profile.githubusername && <ProfileGithub username={profile.githubusername}/> }
+      <div className="card black">
+        <div className="card-content white-text">
+          <span className="card-title">{profile.user.name}</span>
+          <br/>
 
-    </div>
+    <ul className="collapsible">
+
+    <li>
+      <div className="collapsible-header black white-text"><i className='material-icons'>work</i>Experience</div>
+      <div className="collapsible-body">
+        { profile.experience.length > 0 ? profile.experience.map(ex => (
+          <ExperienceItem experience={ex}/>
+        )) : 'No Experience Listed' }
+      </div>
+    </li>
+
+
+    <li>
+      <div className="collapsible-header black white-text"><i className="fa fa-graduation-cap"></i>Education</div>
+      <div className="collapsible-body">
+        { profile.education.length > 0 ? profile.education.map(ed => (
+          <EducationItem education={ed}/>
+        )) : 'No Education Listed' }
+      </div>
+    </li>
+
+    <li>
+      <div className="collapsible-header black white-text"><i className="fa fa-github"></i>Github Repos</div>
+      <div className="collapsible-body">
+
+      { profile.githubusername ? <ProfileGithub username={profile.githubusername}/> : 'User\'s Github Not Connected' }
+      </div>
+    </li>
+
+    { !auth.loading && auth.isAuthenticated && auth.user._id === profile.user._id && <Fragment>
+    <li>
+      <div className="collapsible-header black white-text"><i className="material-icons">edit</i>Edit</div>
+      <div className="collapsible-body">
+      <Link to='/edit-profile' className='btn blue'>Edit Profile</Link>
+      </div>
+    </li>
+      </Fragment>}
+   
+    <li>
+      <div className="collapsible-header black white-text"><i className="material-icons">whatshot</i>Links</div>
+      <div className="collapsible-body">
+      <Link to='/profiles' className='btn red'>
+    Back to profiles
+    </Link>
+        </div>
+    </li>
+  </ul>
+
+
+        </div>
+        { profile.social && <Fragment>
+                  
+        <div className="card-action center">
+          <a target='_blank' rel='noopener noreferrer' href={profile.social.github}><i className="fa fa-github medium"></i></a>
+          <a href={profile.social.linkedin}><i className="fa fa-linkedin medium"></i></a>
+          <a target='_blank' rel='noopener noreferrer' href={profile.website}><i className="fa fa-globe medium"></i></a>
+          <a target='_blank' rel='noopener noreferrer' href={profile.social.twitter}><i className="fa fa-twitter medium"></i></a>
+          <a target='_blank' rel='noopener noreferrer' href={profile.social.facebook}><i className="fa fa-facebook medium"></i></a>
+          <a target='_blank' rel='noopener noreferrer' href={profile.social.instagram}><i className="fa fa-instagram medium"></i></a>
+          <a target='_blank' rel='noopener noreferrer' href={profile.social.youtube}><i className="fa fa-youtube medium"></i></a>
+        </div>  
+        </Fragment> }
+
+  </div>
+
+  </div>
   )
 }
 

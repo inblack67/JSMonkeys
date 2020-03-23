@@ -16,27 +16,34 @@ const Dashboard = ({ deprecate, getMyProfile, profile: {loading, profile}, auth:
     // eslint-disable-next-line
   },[])
 
-  if(loading && !profile)
+  while(loading)
   {
     return <Preloader />
   }
 
   return (
-  <Fragment>
-    <p className="flow-text">Welcome { user && user.name }</p>
-    { !profile ? <Fragment><p className="flow-text">You must create your profile</p>
-    <Link to='/create-profile' className='btn red waves-effect waves-light'>Create Profile</Link>
+  <div className='center'>
+    <h4>Welcome <span className="red-text"><strong>
+    { user && user.name }
+    </strong></span></h4>
+    { !profile ? <Fragment>
+      <p className="flow-text center">You should create your profile</p>
+    <Link to='/create-profile' className='pulse btn blue waves-effect waves-light'>Create Profile</Link>
     </Fragment> : 
     <Fragment>
-    <DashboardActions /> 
     <Experience experience={profile.experience}/> 
     <Education education={profile.education}/>
+    <br/>
+    <DashboardActions /> 
     </Fragment>
     }
 
-    <a href="#1" className="btn red" onClick={e => deprecate()}>Delete Account</a>
 
-  </Fragment>
+    <a href="#1" className="fixed-action-btn red-text left" onClick={e => deprecate()}>
+      <strong>Delete Account</strong>
+      </a>
+
+  </div>
   )
 }
 

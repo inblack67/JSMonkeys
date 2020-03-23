@@ -20,6 +20,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
     <ul className="right hide-on-small-only">
       <li><Link to="/dashboard">Dashboard</Link></li>
       <li><Link to="/profiles">Devs</Link></li>
+      <li><Link to="/posts">Posts</Link></li>
       <li><a href="#!" onClick={logout}>Logout</a></li>
   </ul>
   )
@@ -30,9 +31,9 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   }
 
   return (
-    <nav className="deep-purple transparent">
+    <nav className="transparent">
       <div className="nav-wrapper">
-        <Link to="/" className="brand-logo"><i className="fa fa-github"></i> JSMonkeys</Link>
+        <Link to="/" className="brand-logo"><span className="red-text"><strong><i className='material-icons medium'>whatshot</i>JSMonkeys</strong></span></Link>
         {!loading && <Fragment>
         {
           isAuthenticated ? authLinks : guestLinks

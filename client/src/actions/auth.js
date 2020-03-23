@@ -101,17 +101,19 @@ export const login = (formData) => async dispatch => {
 }
 
 export const logout = () => dispatch => {
-  dispatch({
-    type: LOGOUT,
-  });
+
   dispatch({
     type: CLEAR_PROFILE,
+  });
+
+  dispatch({
+    type: LOGOUT,
   });
 }
 
 export const deprecate = () => async dispatch => {
 
-  if(window.confirm('Are you sure'))
+  if(window.confirm('Are you sure? This action cannot be undone.'))
   {
     try {
       const res = axios.delete('/api/profile');

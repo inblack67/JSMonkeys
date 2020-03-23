@@ -18,7 +18,8 @@ const EditProfile = ({ getMyProfile, history, createProfile, profile: { profile,
     linkedin: '',
     twitter: '',
     youtube: '',
-    instagram: ''
+    instagram: '',
+    github: ''
   })
 
 
@@ -38,7 +39,9 @@ const EditProfile = ({ getMyProfile, history, createProfile, profile: { profile,
       facebook: loading || !profile.social ? '' : profile.social.facebook,
       linkedin: loading || !profile.social ? '' : profile.social.linkedin,
       youtube: loading || !profile.social ? '' : profile.social.youtube,
-      instagram: loading || !profile.social ? '' : profile.social.instagram
+      instagram: loading || !profile.social ? '' : profile.social.instagram,
+      github: loading || !profile.social ? '' : profile.social.github
+      
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },[loading])
@@ -46,7 +49,7 @@ const EditProfile = ({ getMyProfile, history, createProfile, profile: { profile,
   },[])
 
   const {company,website,location,status,skills,githubusername,bio,
-facebook,linkedin,twitter,youtube,instagram} = formData
+facebook,linkedin,twitter,youtube,instagram, github} = formData
 
 const onChange = e => {
   setFormData({ ...formData , [e.target.name]: e.target.value });
@@ -59,47 +62,53 @@ const onSubmit = e => {
 
   return (
 
-    <div className="container" style={{'marginBottom': '200px'}}>
+    <div className="container">
       <p className="flow-text center">Edit Profile</p>
-      <small className="red-text"><strong>* is a required field</strong></small>
       <br/>
       <br/>
       <form onSubmit={onSubmit}>
         
         <div className="input-field">
           <input type="text" value={status} onChange={onChange} name='status' />
-          <span className="helper-text">Add Profession <span className="red-text">*</span></span>
+          <span className="helper-text red-text">Add Profession <span>
+            
+            </span></span>
         </div>
 
         <div className="input-field">
           <input type="text" name="company" value={company} className="validate" onChange={onChange}/>
-          <span className="helper-text">Company</span>
+          <span className="helper-text red-text">Company</span>
         </div>
 
         <div className="input-field">
           <input type="text" name="website" value={website} className="validate" onChange={onChange}/>
-          <span className="helper-text">Website</span>
+          <span className="helper-text red-text">Website</span>
         </div>
 
         <div className="input-field">
           <input type="text" name="location" value={location} className="validate" onChange={onChange}/>
-          <span className="helper-text">Location</span>
+          <span className="helper-text red-text">Location</span>
         </div>
 
         <div className="input-field">
           <input type="text" name="skills" value={skills} className="validate" required onChange={onChange}/>
-          <span className="helper-text" data-error='You Must Add Your Skillset'>Skills <span className="red-text">*</span></span>
+          <span className="helper-text red-text">Skills <span className="red-text"></span></span>
+        </div>
+
+        <div className="input-field">
+          <input type="text" name="githubusername" value={githubusername} className="validate" onChange={onChange}/>
+          <span className="helper-text red-text">Github Username<span className="red-text"></span></span>
         </div>
 
         <div className="input-field">
         <textarea className="materialize-textarea" name='bio' value={bio} onChange={onChange} />
-        <span className="helper-text">Bio</span>
+        <span className="helper-text red-text">Bio</span>
         </div>
 <br/><br/>
 
-      <div className="input-field">
-          <i className="fa fa-github prefix black-text"></i>
-          <input type="text" name="githubusername" value={githubusername} className="validate" onChange={onChange}/>
+<div className="input-field">
+          <i className="fa fa-github prefix white-text"></i>
+          <input type="text" name="github" value={github} className="validate" onChange={onChange}/>
       </div>
 
       <div className="input-field">
@@ -134,7 +143,7 @@ const onSubmit = e => {
     <div className="input-field">
     <input type="submit" value="Update" className='btn red'/>
 
-<Link to='/dashboard' className='btn black secondary-content'>Retreat</Link>
+<Link to='/dashboard' className='btn pink secondary-content'>Retreat</Link>
     </div>
 
       </form>
