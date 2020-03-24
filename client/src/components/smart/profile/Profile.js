@@ -93,11 +93,17 @@ const Profile = ({match, getProfileById, profile:{profile, loading}, auth}) => {
                   
         <div className="card-action center">
           <a target='_blank' rel='noopener noreferrer' href={profile.social.github}><i className="fa fa-github medium"></i></a>
-          <a href={profile.social.linkedin}><i className="fa fa-linkedin medium"></i></a>
+
+          <a target='_blank' rel='noopener noreferrer' href={profile.social.linkedin}><i className="fa fa-linkedin medium"></i></a>
+
           <a target='_blank' rel='noopener noreferrer' href={profile.website}><i className="fa fa-globe medium"></i></a>
+
           <a target='_blank' rel='noopener noreferrer' href={profile.social.twitter}><i className="fa fa-twitter medium"></i></a>
+
           <a target='_blank' rel='noopener noreferrer' href={profile.social.facebook}><i className="fa fa-facebook medium"></i></a>
+
           <a target='_blank' rel='noopener noreferrer' href={profile.social.instagram}><i className="fa fa-instagram medium"></i></a>
+
           <a target='_blank' rel='noopener noreferrer' href={profile.social.youtube}><i className="fa fa-youtube medium"></i></a>
         </div>  
         </Fragment> }
