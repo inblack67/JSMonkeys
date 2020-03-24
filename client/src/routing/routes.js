@@ -11,6 +11,7 @@ import AddEducation from '../components/smart/profile/AddEducation';
 import Profiles from '../components/smart/profiles/Profiles';
 import Profile from '../components/smart/profile/Profile';
 import Posts from '../components/smart/posts/Posts';
+import Post from '../components/smart/posts/post/Post';
 
 const routes = () => {
   return (
@@ -21,6 +22,7 @@ const routes = () => {
         <PrivateRoute exact path="/add-experience" component={AddExperience} />
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
+        <PrivateRoute exact path="/posts/:id" component={Post} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/profiles" component={Profiles} />

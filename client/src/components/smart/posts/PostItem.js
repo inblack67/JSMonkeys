@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { likePost, dislikePost, deletePost } from '../../../actions/post'
 import Moment from 'react-moment'
 
-const PostItem = ({ likePost, dislikePost, deletePost, auth, post: { name, text, date, _id, user, likes, comments } }) => {
+const PostItem = ({ showActions, likePost, dislikePost, deletePost, auth, post: { name, text, date, _id, user, likes, comments } }) => {
 
   const onLike = e => {
     likePost(_id)
@@ -25,14 +25,16 @@ const PostItem = ({ likePost, dislikePost, deletePost, auth, post: { name, text,
         { text }
 <blockquote>{name}  
 {'  '}
-<span className="helper-text">
+
+{ showActions && <Fragment>
+  <span className="helper-text">
   { <Moment format='YYYY/MM/DD'>{date}</Moment> }
 
   { !auth.loading && auth.user._id === user &&  <a href='#!' onClick={onDelete}>
   <span className="badge red-text"><strong>Delete</strong></span>
   </a>}
 
-  <Link to={`/post/${_id}`}><span className="red-text badge"><strong>  Discussions: {comments.length}</strong></span></Link> 
+  <Link to={`/posts/${_id}`}><span className="red-text badge"><strong>  Discussions: {comments.length}</strong></span></Link> 
 
 </span>
 
@@ -50,6 +52,7 @@ const PostItem = ({ likePost, dislikePost, deletePost, auth, post: { name, text,
   <a href="#!" onClick={onLike}>
   <span className="badge red-text">Likes: {likes.length}</span>
 </a>
+</Fragment> }
 
 
 </blockquote>
@@ -59,6 +62,10 @@ const PostItem = ({ likePost, dislikePost, deletePost, auth, post: { name, text,
       <br/>
     </div>
   )
+}
+
+PostItem.defaultProps = {
+  showActions: true
 }
 
 PostItem.propTypes = {

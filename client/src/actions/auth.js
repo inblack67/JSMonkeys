@@ -86,7 +86,7 @@ export const login = (formData) => async dispatch => {
   
   } catch (err) {
 
-    if(err.response)
+    if(err.response !== undefined)
     {
       M.toast({
         html: err.response.data.error
@@ -129,7 +129,7 @@ export const deprecate = () => async dispatch => {
       M.toast({ html: 'Account Deleted Successfuly' })
     
     } catch (err) {
-      if(err.response)
+      if(err.response !== undefined)
       {
         M.toast({
           html: err.response.data.error

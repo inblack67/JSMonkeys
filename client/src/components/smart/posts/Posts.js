@@ -17,7 +17,7 @@ const Posts = ({ post: { posts, loading }, getPosts }) => {
     return <Preloader />
   }
 
-  if(posts.length ===0)
+  if(posts.length === 0 || !posts)
   {
     return <Preloader />
   }

@@ -137,7 +137,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
     
   } catch (err) {
 
-    if(err.response)
+    if(err.response !== undefined)
     {
       M.toast({
         html: err.response.data.error
@@ -175,7 +175,7 @@ export const addExperience = (formData, history) => async dispatch => {
     
   } catch (err) {
 
-    if(err.response)
+    if(err.response !== undefined)
     {
       M.toast({
         html: err.response.data.error
@@ -213,7 +213,7 @@ export const addEducation = (formData, history) => async dispatch => {
     
   } catch (err) {
 
-    if(err.response)
+    if(err.response !== undefined)
     {
       M.toast({
         html: err.response.data.error
@@ -241,7 +241,7 @@ export const deleteExperience = id => async dispatch => {
     });
 
   } catch (err) {
-    if(err.response)
+    if(err.response !== undefined)
     {
       M.toast({
         html: err.response.data.error
@@ -269,7 +269,7 @@ export const deleteExperience = id => async dispatch => {
       });
   
     } catch (err) {
-      if(err.response)
+      if(err.response !== undefined)
       {
         M.toast({
           html: err.response.data.error
