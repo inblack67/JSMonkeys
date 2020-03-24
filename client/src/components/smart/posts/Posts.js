@@ -20,7 +20,11 @@ const Posts = ({ post: { posts, loading }, getPosts }) => {
 
   if(posts.length === 0 || !posts)
   {
-    return <Preloader />
+    return (
+      <div className="container">
+        <h3>No Posts Yet</h3>
+      </div>
+      )
   }
 
   return (
