@@ -12,6 +12,7 @@ import Profiles from '../components/smart/profiles/Profiles';
 import Profile from '../components/smart/profile/Profile';
 import Posts from '../components/smart/posts/Posts';
 import Post from '../components/smart/posts/post/Post';
+import About from '../components/dumb/About';
 
 const routes = () => {
   return (
@@ -27,6 +28,7 @@ const routes = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/profiles" component={Profiles} />
         <Route exact path="/profile/:id" component={Profile} />
+        <Route exact path="/about" component={About} />
         </Switch>
   )
 }

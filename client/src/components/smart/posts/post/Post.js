@@ -23,7 +23,7 @@ const Post = ({getPost, match, post: { post, loading }}) => {
 
   return (
     <Fragment>
-    <div className='container center' style={{'marginTop': '11rem'}}>
+    <div className='container center' style={{'marginTop': '3rem'}}>
       <PostItem post={post} showActions={false}/>
       <CommentForm id={post._id}/>
       { post.comments && post.comments.map(c => (

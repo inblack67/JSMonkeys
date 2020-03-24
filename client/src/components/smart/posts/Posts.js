@@ -22,8 +22,9 @@ const Posts = ({ post: { posts, loading }, getPosts }) => {
   {
     return (
       <div className="container">
-        <h3>No Posts Yet</h3>
-      </div>
+      <h3 className='center'>Posts</h3>
+      <PostForm />
+    </div>
       )
   }
 

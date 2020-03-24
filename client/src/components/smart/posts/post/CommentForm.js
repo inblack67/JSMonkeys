@@ -14,6 +14,7 @@ const CommentForm = ({ addComment, id }) => {
   const onSubmit = e => {
     e.preventDefault()
     addComment({ text }, id)
+    setText('')
   }
 
   return (
