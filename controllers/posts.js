@@ -74,7 +74,9 @@ exports.deletePost = asyncHandler(
 
     await post.remove();
 
-    return res.status(200).json({ success: true, msg: 'Post Deleted Successfuly' })
+    const posts = await Post.find();
+
+    return res.status(200).json({ success: true, data: posts, msg: 'Post Deleted Successfuly' })
 
   }
 )

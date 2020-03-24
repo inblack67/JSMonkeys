@@ -33,7 +33,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   return (
     <nav className="transparent">
       <div className="nav-wrapper">
-        <Link to="/" className="brand-logo"><span className="red-text"><strong><i className='material-icons medium'>whatshot</i>JSMonkeys</strong></span></Link>
+        <Link to="/" className="brand-logo"><span className="red-text"><i className='fa fa-github prefix fa-2x'></i><strong className=''>JSMonkeys</strong></span></Link>
         {!loading && <Fragment>
         {
           isAuthenticated ? authLinks : guestLinks

@@ -4,6 +4,7 @@ import Preloader from '../../dumb/Preloader'
 import { connect } from 'react-redux'
 import { getPosts } from '../../../actions/post'
 import PostItem from './PostItem'
+import PostForm from './PostForm'
 
 const Posts = ({ post: { posts, loading }, getPosts }) => {
 
@@ -24,6 +25,7 @@ const Posts = ({ post: { posts, loading }, getPosts }) => {
   return (
     <div className="container">
       <h3 className='center'>Posts</h3>
+      <PostForm />
       {posts.map(p => (
       <PostItem post={p} key={p._id}/>
     ))}

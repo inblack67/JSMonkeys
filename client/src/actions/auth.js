@@ -51,7 +51,7 @@ export const register = (formData) => async dispatch => {
   
   } catch (err) {
 
-    if(err.response)
+    if(err.response !== undefined)
     {
       M.toast({
         html: err.response.data.error

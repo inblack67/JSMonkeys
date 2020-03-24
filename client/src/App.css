@@ -7,3 +7,11 @@
 input, textarea{
   color: white;
 }
+
+input:focus {
+  border-bottom: 1px solid grey !important;
+  box-shadow: 0 1px 0 0 grey !important;
+}
+label.active {
+  color: grey !important;
+}
