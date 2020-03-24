@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { deleteComment } from '../../../../actions/post'
 import Moment from 'react-moment'
 import Preloader from '../../../dumb/Preloader'
@@ -45,7 +44,9 @@ const CommentItem = ({deleteComment, postId, comment: { _id, text, name, user, c
 }
 
 CommentItem.propTypes = {
-
+  deleteComment: PropTypes.func.isRequired,
+  comment: PropTypes.object.isRequired,
+  postId: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({

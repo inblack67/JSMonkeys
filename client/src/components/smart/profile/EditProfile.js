@@ -28,6 +28,7 @@ const EditProfile = ({ getMyProfile, history, createProfile, profile: { profile,
     getMyProfile()
 
     setFormData({
+      ...formData,
       company: loading || !profile.company ? '' : profile.company,
       website: loading || !profile.website ? '' : profile.website,
       location: loading || !profile.location ? '' : profile.location,
@@ -41,11 +42,8 @@ const EditProfile = ({ getMyProfile, history, createProfile, profile: { profile,
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram,
       github: loading || !profile.social ? '' : profile.social.github
-      
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[loading])
-
+    })
+    // eslint-disable-next-line
   },[])
 
   const {company,website,location,status,skills,githubusername,bio,
@@ -143,7 +141,7 @@ const onSubmit = e => {
     <div className="input-field">
     <input type="submit" value="Update" className='btn red'/>
 
-<Link to='/dashboard' className='btn pink secondary-content'>Retreat</Link>
+<Link to='/dashboard' className='btn grey darken-4 secondary-content'>Retreat</Link>
     </div>
 
       </form>

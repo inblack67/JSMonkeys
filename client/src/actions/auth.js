@@ -116,8 +116,7 @@ export const deprecate = () => async dispatch => {
   if(window.confirm('Are you sure? This action cannot be undone.'))
   {
     try {
-      const res = axios.delete('/api/profile');
-      console.log(res.data);
+      axios.delete('/api/profile');
   
       dispatch({
         type: CLEAR_PROFILE

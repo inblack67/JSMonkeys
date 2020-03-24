@@ -10,7 +10,8 @@ const Posts = ({ post: { posts, loading }, getPosts }) => {
 
   useEffect(() => {
     getPosts()
-  },[getPosts])
+    // eslint-disable-next-line
+  },[])
 
   while(loading)
   {

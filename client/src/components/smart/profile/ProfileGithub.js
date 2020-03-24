@@ -8,6 +8,7 @@ const ProfileGithub = ({ username, getRepos, profile: { repos, loading }  }) => 
 
   useEffect(() => {
     getRepos(username)
+    // eslint-disable-next-line
   },[])
 
   while(loading)
@@ -43,12 +44,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, { getRepos })(ProfileGithub)
-
-
-/* 
-       { repos && repos.map(r => (
-          <li className="collection-item" key={r.id}>
-            { r.name}
-          </li>
-        )) }
-*/

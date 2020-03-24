@@ -28,6 +28,10 @@ const Education = ({ education, deleteEducation }) => {
     </tr>
   ))
 
+  if(educations.length === 0)
+  {
+    return ''
+  }
 
   return (
     <div className="container">

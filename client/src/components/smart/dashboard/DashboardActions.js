@@ -15,15 +15,15 @@ const DashboardActions = () => {
     <li>
       <div className="collapsible-header black"><i className="material-icons">edit</i>Edit</div>
       <div className="collapsible-body black white-text">
-      <Link to='/edit-profile' className='btn blue'>Edit Profile</Link>
+      <Link to='/edit-profile' className='btn red'>Edit Profile</Link>
         </div>
     </li>
     <li>
       <div className="collapsible-header black"><i className="material-icons">add</i>Add</div>
       <div className="collapsible-body black white-text">
-      <Link to='/add-experience' className='btn pink'>Add Experience</Link>
+      <Link to='/add-experience' className='btn red'>Add Experience</Link>
       {'  '}
-      <Link to='/add-education' className='btn purple'>Add Education</Link>
+      <Link to='/add-education' className='btn grey darken-4'>Add Education</Link>
       </div>
     </li>
 

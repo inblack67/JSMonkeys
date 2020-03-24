@@ -6,7 +6,7 @@ const EducationItem = ({ education: { school, degree, fieldofstudy, description,
     <ul className="collection">
       <p className="flow-text"><span>{ degree }</span></p>
       <br/>
-      <li className="collection-item" className='black'>
+      <li className="collection-item black">
         <span>School - { school }</span>
         <br/>
         <span>From - { <Moment format='YYYY/MM/DD'>{from}</Moment> }</span>

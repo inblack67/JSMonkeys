@@ -19,8 +19,15 @@ const Experience = ({ experience, deleteExperience }) => {
     </tr>
   ))
 
+  if(experiences.length === 0)
+  {
+    return ''
+  }
+
+
 
   return (
+
     <div className="container">
       <p className="flow-text left"><span className="red-text">Experience</span></p>
       <table className='highlight responsive-table'>

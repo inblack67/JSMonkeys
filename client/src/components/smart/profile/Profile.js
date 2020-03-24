@@ -18,7 +18,8 @@ const Profile = ({match, getProfileById, profile:{profile, loading}, auth}) => {
 
   useEffect(() => {
     getProfileById(match.params.id)
-  },[getProfileById])
+    // eslint-disable-next-line
+  },[])
 
   while(loading)
   {
@@ -44,7 +45,7 @@ const Profile = ({match, getProfileById, profile:{profile, loading}, auth}) => {
       <div className="collapsible-header black white-text"><i className='material-icons'>work</i>Experience</div>
       <div className="collapsible-body">
         { profile.experience.length > 0 ? profile.experience.map(ex => (
-          <ExperienceItem experience={ex}/>
+          <ExperienceItem experience={ex} key={ex._id}/>
         )) : 'No Experience Listed' }
       </div>
     </li>
@@ -54,7 +55,7 @@ const Profile = ({match, getProfileById, profile:{profile, loading}, auth}) => {
       <div className="collapsible-header black white-text"><i className="fa fa-graduation-cap"></i>Education</div>
       <div className="collapsible-body">
         { profile.education.length > 0 ? profile.education.map(ed => (
-          <EducationItem education={ed}/>
+          <EducationItem education={ed} key={ed._id}/>
         )) : 'No Education Listed' }
       </div>
     </li>
@@ -71,7 +72,7 @@ const Profile = ({match, getProfileById, profile:{profile, loading}, auth}) => {
     <li>
       <div className="collapsible-header black white-text"><i className="material-icons">edit</i>Edit</div>
       <div className="collapsible-body">
-      <Link to='/edit-profile' className='btn blue'>Edit Profile</Link>
+      <Link to='/edit-profile' className='btn red'>Edit Profile</Link>
       </div>
     </li>
       </Fragment>}
@@ -108,7 +109,9 @@ const Profile = ({match, getProfileById, profile:{profile, loading}, auth}) => {
 }
 
 Profile.propTypes = {
-
+  getProfileById: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({

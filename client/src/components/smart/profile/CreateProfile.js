@@ -121,7 +121,7 @@ const onSubmit = e => {
     <div className="input-field">
     <input type="submit" value="Create" className='btn red'/>
 
-<Link to='/dashboard' className='btn pink secondary-content'>Retreat</Link>
+<Link to='/dashboard' className='btn grey darken-4 secondary-content'>Retreat</Link>
     </div>
 
       </form>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, CLEAR_PROFILE, GET_PROFILES, GET_REPOS } from './types'
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, GET_PROFILES, GET_REPOS } from './types'
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 export const getMyProfile = () => async dispatch => {
@@ -118,7 +118,6 @@ export const createProfile = (formData, history, edit = false) => async dispatch
     }
 
     const res = await axios.post('/api/profile', formData, config);
-    console.log(res.data.data);
 
     M.toast({
       html: res.data.msg

@@ -13,7 +13,8 @@ const Post = ({getPost, match, post: { post, loading }}) => {
 
   useEffect(() => {
     getPost(match.params.id)
-  }, [getPost])
+    // eslint-disable-next-line
+  }, [])
 
   if(loading || !post)
   {

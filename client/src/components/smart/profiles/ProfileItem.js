@@ -28,7 +28,7 @@ const ProfileItem = ({ profile: { company, githubusername, location, skills, sta
 }
 
 ProfileItem.propTypes = {
-
+  profile: PropTypes.object.isRequired,
 }
 
 export default ProfileItem

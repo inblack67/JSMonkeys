@@ -28,7 +28,7 @@ const Dashboard = ({ deprecate, getMyProfile, profile: {loading, profile}, auth:
     </strong></span></h4>
     { !profile ? <Fragment>
       <p className="flow-text center">You should create your profile</p>
-    <Link to='/create-profile' className='pulse btn blue waves-effect waves-light'>Create Profile</Link>
+    <Link to='/create-profile' className='pulse btn red waves-effect waves-light'>Create Profile</Link>
     </Fragment> : 
     <Fragment>
     <Experience experience={profile.experience}/> 

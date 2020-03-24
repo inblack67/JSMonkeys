@@ -7,7 +7,7 @@ const Landing = ({isAuthenticated}) => {
   if(isAuthenticated) { return <Redirect to="/dashboard" /> }
 
   return (
-    <div className="" style={{"height": "100vh", "color": "white"}}>
+    <div className="" style={{"color": "white"}}>
 
       <div className="container center" style={{"marginTop": "11rem"}}>  
 
